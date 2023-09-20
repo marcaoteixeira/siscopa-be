@@ -1,21 +1,21 @@
 const express = require("express");
 const router = express.Router();
-var knex = require("../../database/conection");
+var knex = require("../database/conection");
 
 class Usuario {
     async findAll(){
         try{
-            var result = await knex.select([ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone]).table("dbo.compra");            
+            var result = await knex.select(['ide_usuario', 'nom_usuario', 'tex_login', 'ind_bloqueado', 'nom_usuario_criador', 'dat_criacao', 'nom_usuario_ultima_alteracao',  'dat_ultima_alteracao', 'num_telefone']).table("dbo.usuario");            
             return result;
         }catch(error){
-            console.log(err);
+            console.log(error);
             return[];
     }
 
     }
-    async findById(id){                
+    async findById(ide_usuario){                
         try{
-            var result = await knex.select([ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone]).where({id:id}).table("dbo.usuraio");
+            var result = await knex.select(['ide_usuario', 'nom_usuario', 'tex_login', 'ind_bloqueado', 'nom_usuario_criador', 'dat_criacao', 'nom_usuario_ultima_alteracao',  'dat_ultima_alteracao', 'num_telefone']).where({ide_usuario:ide_usuario}).table("dbo.usuario");
            
             if(result.length > 0){
                 return result[0];
@@ -23,7 +23,7 @@ class Usuario {
                 return undefined;
             }                     
         }catch(error){
-            console.log(err);
+            console.log(error);
             return undefined;            
         }
     }
@@ -38,7 +38,7 @@ class Usuario {
     }  
     async UsuarioUpdate(ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone){
         try{                       
-            await knex.where({ide_usuario: ide_usuario}).update({ nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone}).table("tab_alinea")
+            await knex.where({ide_usuario: ide_usuario}).update({ nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone}).table("dbo_alinea")
             console.log("Alterado com sucesso com sucesso!!!")
         }catch(error){
             console.log(error);          
