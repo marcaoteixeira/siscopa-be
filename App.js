@@ -19,6 +19,5 @@ app.use(express.urlencoded({ extended: true}))
 
 app.use("/",router);
 
-app.listen(8080,() => {
-    console.log("Servidor rodando")
-});
+app.listen(8080,'192.168.16.39');
+    console.log("Servidor rodando em http://192.168.16.39");
