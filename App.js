@@ -19,6 +19,6 @@ app.use(express.urlencoded({ extended: true}))
 
 app.use("/",router);
 
-app.listen(4000,() => {
+app.listen(80,() => {
     console.log("Servidor rodando")
 });
