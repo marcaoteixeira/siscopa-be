@@ -58,4 +58,4 @@ class Produto {
 
 }
 
-module.exports = new Usuario();
+module.exports = new Produto();
