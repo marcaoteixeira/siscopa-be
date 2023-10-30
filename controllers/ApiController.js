@@ -1,103 +1,108 @@
-const produto = require("../models/produto");
+const produto = require("../models/Produto")
+const usuario = require("../models/Usuario");
+const compra = require("../models/Compra");
+
 
 class ApiController{
 
-   //Administração dbo.produto
+   //Administração dbo.usuario
   
-   async findproduto(req, res){
-    var ide_produto = req.params.ide_produto;
-    var produto = await produto.findById(ide_produto)
-    if(produto == undefined){
+   async findusuario(req, res){
+    var ide_usuario = req.params.ide_usuario;
+    var usuarios = await usuario.findById(ide_usuario)
+    if(usuarios == undefined){
         res.status(404);
         res.json({});
     }else{
         res.status(200)
-        res.json(produto);
+        res.json(usuarios);
     }
 
  }
- async produtosave(req, res) {
+ async usuariosave(req, res) {
 
-    var {nom_produto, tex_login, ind_bloqueado, nom_produto_criador, dat_criacao, nom_produto_ultima_alteracao,  dat_ultima_alteracao, num_telefone} = req.body;       
+    var {ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone} = req.body;       
     
-    await produto.produtoSave(nom_produto, tex_login, ind_bloqueado, nom_produto_criador, dat_criacao, nom_produto_ultima_alteracao,  dat_ultima_alteracao, num_telefone);
+    await usuario.UsuarioSave(nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone);
    
  }
- async listaproduto(req, res) {
+ async listausuario(req, res) {
 
-    var produtos = await produto.findAll();
-    res.json(produtos);  
+    var usuarios = await usuario.findAll();
+    res.json(usuarios);  
 
 
  }
- async updateproduto(req, res) {
+ async updateusuario(req, res) {
 
-    var {ide_produto, nom_produto, tex_login, ind_bloqueado, nom_produto_criador, dat_criacao, nom_produto_ultima_alteracao,  dat_ultima_alteracao, num_telefone} = req.body;
+    var {ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone} = req.body;
     
-    await produto.produtoUpdate(ide_produto, nom_produto, tex_login, ind_bloqueado, nom_produto_criador, dat_criacao, nom_produto_ultima_alteracao,  dat_ultima_alteracao, num_telefone);
+    await usuario.UsuarioUpdate(ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone);
           
  }
 
- async deleteproduto(req, res) {
-    var ide_produto =  req.params.ide_produto      
-    await produto.produtoDelete(ide_produto);
- 
+ async deleteusuario(req, res) {
+    var ide_usuario =  req.params.ide_usuario      
+    await usuario.usuarioDelete(ide_usuario); 
 
 }
 
-//Administração dbo.Produto
+//Administração dbo.Compras
   
-async findproduto(req, res){
-   var ide_produto = req.params.ide_produto;
-   var produto = await produto.findById(ide_produto)
-   if(produto == undefined){
+async findcompra(req, res){
+   var ide_compra = req.params.ide_compra;
+   var compras = await compra.findById(ide_compra)
+   if(compras == undefined){
        res.status(404);
        res.json({});
    }else{
        res.status(200)
-       res.json(produto);
+       res.json(compras);
    }
 
 }
-async produtosave(req, res) {
+async comprasave(req, res) {
 
-   await produto.produtoSave(nom_produto, num_preco, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, ind_bloqueado);  
+   await compra.compraSave(ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao);  
 }
-async listaproduto(req, res) {
-   var produtos = await produto.findAll();
-   res.json(produtos);  
+async listacompra(req, res) {
+   var compras = await compra.findAll();
+   res.json(compra);  
 }
 
-async updateproduto(req, res) {
+async updatecompra(req, res) {
 
-   var {ide_produto, nom_produto, tex_login, ind_bloqueado, nom_produto_criador, dat_criacao, nom_produto_ultima_alteracao,  dat_ultima_alteracao, num_telefone} = req.body;
+   var {ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao} = req.body;
    
-   await produto.produtoUpdate(ide_produto, nom_produto, tex_login, ind_bloqueado, nom_produto_criador, dat_criacao, nom_produto_ultima_alteracao,  dat_ultima_alteracao, num_telefone);
+   await compra.compraUpdate(ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao);
          
 }
 
-async deleteproduto(req, res) {
-   var ide_produto =  req.params.ide_produto      
-   await produto.produtoDelete(ide_produto);
+async deletecompra(req, res) {
+   var ide_compra =  req.params.ide_compra      
+   await compra.compraDelete(ide_compra);
 }
 
-//Administração dbo.Compra
+//Administração dbo.produto
   
 async findproduto(req, res){
-   var ide_produto = req.params.ide_produto;
-   var produto = await produto.findById(ide_produto)
+   console.log(req.params.id)
+   var id = req.params.id;   
+   console.log(id)
+   var produtos = await produto.findById(id)
    if(produto == undefined){
        res.status(404);
        res.json({});
    }else{
        res.status(200)
-       res.json(produto);
+       res.json(produtos);
    }
 
 }
 async produtosave(req, res) {
-
-   await produto.produtoSave(nom_produto, num_preco, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, ind_bloqueado);  
+   
+   var {nom_produto, num_preco, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, ind_bloqueado} = req.body;
+   await produto.produtoSave(nom_produto, num_preco, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, ind_bloqueado)
 }
 async listaproduto(req, res) {
    var produtos = await produto.findAll();
@@ -106,9 +111,8 @@ async listaproduto(req, res) {
 
 async updateproduto(req, res) {
 
-   var {ide_produto, nom_produto, tex_login, ind_bloqueado, nom_produto_criador, dat_criacao, nom_produto_ultima_alteracao,  dat_ultima_alteracao, num_telefone} = req.body;
-   
-   await produto.produtoUpdate(ide_produto, nom_produto, tex_login, ind_bloqueado, nom_produto_criador, dat_criacao, nom_produto_ultima_alteracao,  dat_ultima_alteracao, num_telefone);
+   var {ide_produto, nom_produto, num_preco, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, ind_bloqueado} = req.body;   
+   await produto.produtoUpdate(ide_produto, nom_produto, num_preco, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, ind_bloqueado);
          
 }
 

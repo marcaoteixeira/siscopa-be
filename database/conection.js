@@ -6,7 +6,7 @@ const knex = require('knex')({
       port : 1433,
       user : 'usr_contacopa',
       password : 'copa2023',
-      database : 'contacopa'
+      database : 'siscopa'
     }
   });
 

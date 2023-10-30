@@ -1,10 +1,10 @@
 //var bodyParser = require('body-parser')
 var express = require("express")
 var app = express()
-var router = require("./router/routeres")
-// var cors = require("cors")
+var router = require("./router/routes")
+var cors = require("cors")
 
-// app.use(cors());
+app.use(cors());
 
 app.set('view engine','ejs');
 app.use(express.static('public'));
@@ -19,6 +19,6 @@ app.use(express.urlencoded({ extended: true}))
 
 app.use("/",router);
 
-app.listen(80,() => {
+app.listen(8080,() => {
     console.log("Servidor rodando")
 });
