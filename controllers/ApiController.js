@@ -1,5 +1,5 @@
-const produto = require("../models/Produto")
-const usuario = require("../models/Usuario");
+const produto = require("../models/Produto");
+const usuario = require("../models/usuario");
 const compra = require("../models/Compra");
 
 
@@ -8,8 +8,8 @@ class ApiController{
    //Administração dbo.usuario
   
    async findusuario(req, res){
-    var ide_usuario = req.params.ide_usuario;
-    var usuarios = await usuario.findById(ide_usuario)
+    var id = req.params.id;
+    var usuarios = await usuario.findById(id)
     if(usuarios == undefined){
         res.status(404);
         res.json({});
@@ -17,13 +17,13 @@ class ApiController{
         res.status(200)
         res.json(usuarios);
     }
-
  }
+ 
  async usuariosave(req, res) {
 
-    var {ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone} = req.body;       
+    var {ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone, tex_email} = req.body;       
     
-    await usuario.UsuarioSave(nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone);
+    await usuario.UsuarioSave(nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone, tex_email);
    
  }
  async listausuario(req, res) {
@@ -35,16 +35,16 @@ class ApiController{
  }
  async updateusuario(req, res) {
 
-    var {ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone} = req.body;
+    var {ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone, tex_email} = req.body;
     
-    await usuario.UsuarioUpdate(ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone);
+    await usuario.UsuarioUpdate(ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone, tex_email);
           
  }
 
  async deleteusuario(req, res) {
     var ide_usuario =  req.params.ide_usuario      
-    await usuario.usuarioDelete(ide_usuario); 
-
+    await usuario.UsuarioDelete(ide_usuario); 
+    
 }
 
 //Administração dbo.Compras
@@ -61,6 +61,7 @@ async findcompra(req, res){
    }
 
 }
+
 async comprasave(req, res) {
 
    await compra.compraSave(ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao);  

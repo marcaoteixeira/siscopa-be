@@ -38,7 +38,7 @@ class Compra {
     }  
     async CompraUpdate(ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao){
         try{                       
-            await knex.where({ide_compra: ide_compra}).update({ ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao}).table("dbo_alinea")
+            await knex.where({ide_compra: ide_compra}).update({ ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao}).table("dbo.compra")
             console.log("compra Alterada com sucesso com sucesso!!!")
         }catch(error){
             console.log(error);          
