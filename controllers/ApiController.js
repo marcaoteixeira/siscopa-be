@@ -50,8 +50,21 @@ class ApiController{
 //Administração dbo.Compras
   
 async findcompra(req, res){
-   var ide_compra = req.params.ide_compra;
-   var compras = await compra.findById(ide_compra)
+   var id = req.params.id;
+   var compras = await compra.findById(id)
+   if(compras == undefined){
+       res.status(404);
+       res.json({});
+   }else{
+       res.status(200)
+       res.json(compras);
+   }
+
+}
+
+async findcompraservidor(req, res){
+   var id = req.params.ide_servidor;
+   var compras = await compra.findById(id)
    if(compras == undefined){
        res.status(404);
        res.json({});
