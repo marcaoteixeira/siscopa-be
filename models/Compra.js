@@ -45,6 +45,7 @@ class Compra {
 
     async CompraSave( ide_usuario, ide_produto, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao){
         try{                       
+            console.log(ide_produto);
             await knex.insert({ ide_usuario, ide_produto, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao}).table("dbo.compra");
             console.log("compra Cadastrado com sucesso!!!")
         }catch(error){

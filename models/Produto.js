@@ -5,7 +5,7 @@ var knex = require("../database/conection");
 class Produto {
     async findAll(){
         try{
-            var result = await knex.select(['ide_produto', 'nom_produto', 'num_preco', 'nom_usuario_criador', 'dat_criacao', 'nom_usuario_ultima_alteracao',  'dat_ultima_alteracao', 'ind_bloqueado']).table("dbo.produto");            
+            var result = await knex.select(['ide_produto', 'nom_produto', 'num_preco', 'nom_usuario_criador', 'dat_criacao', 'nom_usuario_ultima_alteracao',  'dat_ultima_alteracao', 'ind_bloqueado']).table("dbo.produto").orderBy('nom_produto');            
             return result;
         }catch(error){
             console.log(error);
