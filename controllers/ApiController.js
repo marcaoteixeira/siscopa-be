@@ -21,7 +21,7 @@ class ApiController{
  
  async usuariosave(req, res) {
 
-    var {ide_usuario, nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone, tex_email} = req.body;       
+    var {nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone, tex_email} = req.body;       
     
     await usuario.UsuarioSave(nom_usuario, tex_login, ind_bloqueado, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao,  dat_ultima_alteracao, num_telefone, tex_email);
    
@@ -77,11 +77,14 @@ async findcompraservidor(req, res){
 
 async comprasave(req, res) {
 
-   await compra.compraSave(ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao);  
+   var {ide_usuario, ide_produto, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao} = req.body;
+   console.log(ide_usuario)
+   await compra.CompraSave(ide_usuario, ide_produto, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao);  
 }
+
 async listacompra(req, res) {
    var compras = await compra.findAll();
-   res.json(compra);  
+   res.json(compras);  
 }
 
 async updatecompra(req, res) {

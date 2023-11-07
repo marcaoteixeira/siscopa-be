@@ -43,9 +43,9 @@ class Compra {
         }
     }
 
-    async CompraSave(ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao){
+    async CompraSave( ide_usuario, ide_produto, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao){
         try{                       
-            await knex.insert({ ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao}).table("dbo.compra");
+            await knex.insert({ ide_usuario, ide_produto, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao}).table("dbo.compra");
             console.log("compra Cadastrado com sucesso!!!")
         }catch(error){
             console.log(error);            
