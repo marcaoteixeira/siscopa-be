@@ -20,9 +20,10 @@ router.post('/produto/list',ApiController.listaproduto);
 router.put('/produto/update',ApiController.updateproduto);
 router.delete('/produto/delete/:ide_produto',ApiController.deleteproduto);
 // rotas compra
-router.get('/compra/:id',ApiController.findcompra);
+//router.get('/compra/:id',ApiController.findcompra);
+router.get('/compra/:id', ApiController.findcomprasusuario);
 router.post('/compra/new',ApiController.comprasave);
-router.post('/compra/list',ApiController.listacompra);
+//router.post('/compra/list',ApiController.listacompra);
 router.put('/compra/update',ApiController.updatecompra);
 router.delete('/compra/delete/:ide_compra',ApiController.deletecompra);
 
