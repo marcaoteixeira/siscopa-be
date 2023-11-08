@@ -30,7 +30,8 @@ class Compra {
 
     async findByIdeServidor(id){                
         try{
-            var result = await knex.select(['ide_compra', 'ide_usuario', 'qtd_produto', 'dat_compra', 'ind_pago', 'nom_usuario_criador', 'dat_criacao', 'nom_usuario_ultima_alteracao','dat_ultima_alteracao']).where({ide_servidor: id}).table("dbo.compra");
+            console.log('%%'+id)
+            var result = await knex.select(['ide_compra', 'ide_usuario', 'qtd_produto','nom_produto', 'dat_compra', 'ind_pago', 'nom_usuario_criador', 'dat_criacao', 'nom_usuario_ultima_alteracao','dat_ultima_alteracao']).where({ide_servidor: id}).table("dbo.compra").join('dbo.produto','dbo.produto.nom_produto');
            
             if(result.length > 0){
                 return result[0];
