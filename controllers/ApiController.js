@@ -62,7 +62,7 @@ async findcompra(req, res){
 
 }
 
-async findcompraservidor(req, res){
+async findcomprasusuario(req, res){
    var id = req.params.ide_servidor;
    var compras = await compra.findById(id)
    if(compras == undefined){
