@@ -24,7 +24,7 @@ router.delete('/produto/delete/:ide_produto',ApiController.deleteproduto);
 //router.get('/compra/:id',ApiController.findcomprasusuario);
 router.post('/compra/new',ApiController.comprasave);
 //router.post('/compra/list',ApiController.listacompra);
-router.get('/compra/list/:id',ApiController.findcomprasusuario);
+router.post('/compra/list/:id',ApiController.findcomprasusuario);
 router.put('/compra/update',ApiController.updatecompra);
 router.delete('/compra/delete/:ide_compra',ApiController.deletecompra);
 

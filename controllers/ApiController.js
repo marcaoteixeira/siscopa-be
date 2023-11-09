@@ -97,7 +97,7 @@ async updatecompra(req, res) {
 
 async deletecompra(req, res) {
    var ide_compra =  req.params.ide_compra      
-   await compra.compraDelete(ide_compra);
+   await compra.CompraDelete(ide_compra);
 }
 
 //Administração dbo.produto
