@@ -95,6 +95,14 @@ async updatecompra(req, res) {
          
 }
 
+async pagarcompra(req, res) {
+
+   var {ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao} = req.body;
+   
+   await compra.CompraPagar(ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao);
+         
+}
+
 async deletecompra(req, res) {
    var ide_compra =  req.params.ide_compra      
    await compra.CompraDelete(ide_compra);
