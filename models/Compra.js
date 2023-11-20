@@ -57,8 +57,8 @@ class Compra {
     }  
     async CompraPagar(ide_usuario, dat_ultima_alteracao){
         try{                       
-            await // knex.where({ide_usuario: ide_usuario}).update(knex.raw('set ind_pago = 1'), {dat_utima_alteracao: dat_ultima_alteracao}).table("dbo.compra")
-            knex.raw('update dbo.compra set ind_pago = 1,dat_ultima_alteracao = GETDATE() where ide_usuario = ide_usuario')
+            await  knex.update({ind_pago:  1, dat_ultima_alteracao: dat_ultima_alteracao}).table("dbo.compra").where({ide_usuario: ide_usuario})
+            //knex.raw('update dbo.compra set ind_pago = 1,dat_ultima_alteracao = GETDATE() where ide_usuario = ide_usuario')
             console.log("Pagamento registrado com sucesso!!!")
         }catch(error){
             console.log(error);          
