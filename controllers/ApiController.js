@@ -97,9 +97,9 @@ async updatecompra(req, res) {
 
 async pagarcompra(req, res) {
 
-   var {ide_compra, ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao} = req.body;
+   var {ide_usuario,dat_ultima_alteracao} = req.body;
    
-   await compra.CompraPagar(ide_usuario, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao);
+   await compra.CompraPagar(ide_usuario, dat_ultima_alteracao);
          
 }
 

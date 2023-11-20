@@ -25,7 +25,7 @@ router.delete('/produto/delete/:ide_produto',ApiController.deleteproduto);
 router.post('/compra/new',ApiController.comprasave);
 //router.post('/compra/list',ApiController.listacompra);
 router.post('/compra/list/:id',ApiController.findcomprasusuario);
-router.put('/compra/update',ApiController.updatecompra);
+router.put('/compra/pagar/',ApiController.pagarcompra);
 router.delete('/compra/delete/:ide_compra',ApiController.deletecompra);
 
 module.exports = router;
