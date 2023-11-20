@@ -49,7 +49,7 @@ class Usuario {
     } 
     async UsuarioDelete(ide_usuario){
         try{                       
-            await knex.where({ide_usuario: ide_usuario}).delete().table("tab_usuario")
+            await knex.where({ide_usuario: ide_usuario}).delete().table("dbo.usuario")
             console.log("Usuário excluido com sucesso!!!")         
 
         }catch(error){
