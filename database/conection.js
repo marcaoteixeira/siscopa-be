@@ -1,3 +1,9 @@
+// Conexão de produção
+//const database = "siscopa"
+
+// Conexão de desenvolvimento
+const database = "siscopadesenv"
+
 const knex = require('knex')({
     client: 'mssql',
     //version: '7.2',
@@ -6,7 +12,7 @@ const knex = require('knex')({
       port : 1433,
       user : 'usr_contacopa',
       password : 'copa2023',
-      database : 'siscopa'
+      database : database
     }
   });
 
