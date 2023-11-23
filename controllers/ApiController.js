@@ -1,7 +1,7 @@
 const produto = require("../models/Produto");
 const usuario = require("../models/Usuario");
 const compra = require("../models/Compra");
-
+//para forçar alteração
 
 class ApiController{
 
