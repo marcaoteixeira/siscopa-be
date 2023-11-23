@@ -1,5 +1,5 @@
 const produto = require("../models/Produto");
-const usuario = require("../models/usuario");
+const usuario = require("../models/Usuario");
 const compra = require("../models/Compra");
 
 
@@ -65,6 +65,20 @@ async findcompra(req, res){
 async findcomprasusuario(req, res){
    var id = req.params.id;
    var compras = await compra.findByIdeServidor(id)
+   if(compras == undefined){
+       res.status(404);
+       res.json({});
+   }else{
+       res.status(200)
+       res.json(compras);
+   }
+
+}
+
+async pesquisacomprasusuario(req, res){
+   //var id = req.params.id;
+   var {ide_usuario, ind_pago} = req.body;
+   var compras = await compra.pesquisaByIdeServidor(ide_usuario, ind_pago)
    if(compras == undefined){
        res.status(404);
        res.json({});
