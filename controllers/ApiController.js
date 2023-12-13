@@ -89,11 +89,25 @@ async pesquisacomprasusuario(req, res){
 
 }
 
+async pesquisatotal(req, res){
+   //var id = req.params.id;
+   //var {ide_usuario, ind_pago} = req.body;
+   var compras = await compra.pesquisaTotal()
+   if(compras == undefined){
+       res.status(404);
+       res.json({});
+   }else{
+       res.status(200)
+       res.json(compras);
+   }
+
+}
+
 async comprasave(req, res) {
 
-   var {ide_usuario, ide_produto, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao} = req.body;
+   var {ide_usuario, ide_produto, nom_produto, num_preco, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao} = req.body;
    console.log(ide_usuario)
-   await compra.CompraSave(ide_usuario, ide_produto, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao);  
+   await compra.CompraSave(ide_usuario, ide_produto, nom_produto, num_preco, qtd_produto, dat_compra, ind_pago, nom_usuario_criador, dat_criacao, nom_usuario_ultima_alteracao, dat_ultima_alteracao);  
 }
 
 async listacompra(req, res) {
