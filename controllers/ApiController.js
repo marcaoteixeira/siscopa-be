@@ -77,8 +77,8 @@ async findcomprasusuario(req, res){
 
 async pesquisacomprasusuario(req, res){
    //var id = req.params.id;
-   var {ide_usuario, ind_pago} = req.body;
-   var compras = await compra.pesquisaByIdeServidor(ide_usuario, ind_pago)
+   var {ide_usuario, ind_pago, dat_compra_inicio, dat_compra_fim} = req.body;
+   var compras = await compra.pesquisaByIdeServidor(ide_usuario, ind_pago, dat_compra_inicio,dat_compra_fim)
    if(compras == undefined){
        res.status(404);
        res.json({});
@@ -90,9 +90,8 @@ async pesquisacomprasusuario(req, res){
 }
 
 async pesquisatotal(req, res){
-   //var id = req.params.id;
-   //var {ide_usuario, ind_pago} = req.body;
-   var compras = await compra.pesquisaTotal()
+   var {ind_pago} = req.body;
+   var compras = await compra.pesquisaTotal(ind_pago)
    if(compras == undefined){
        res.status(404);
        res.json({});
@@ -125,9 +124,9 @@ async updatecompra(req, res) {
 
 async pagarcompra(req, res) {
 
-   var {ide_usuario,dat_ultima_alteracao} = req.body;
+   var {ide_usuario, dat_pagamento, dat_ultima_alteracao} = req.body;
    
-   await compra.CompraPagar(ide_usuario, dat_ultima_alteracao);
+   await compra.CompraPagar(ide_usuario, dat_pagamento, dat_ultima_alteracao);
          
 }
 
