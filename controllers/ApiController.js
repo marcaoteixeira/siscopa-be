@@ -90,8 +90,9 @@ async pesquisacomprasusuario(req, res){
 }
 
 async pesquisatotal(req, res){
-   var {ind_pago} = req.body;
-   var compras = await compra.pesquisaTotal(ind_pago)
+   var {ind_pago, dat_compra_inicio, dat_compra_fim} = req.body;
+   console.log("****" + dat_compra_inicio + "*****")
+   var compras = await compra.pesquisaTotal(ind_pago, dat_compra_inicio,dat_compra_fim)
    if(compras == undefined){
        res.status(404);
        res.json({});
